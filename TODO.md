@@ -16,15 +16,16 @@ Target:
 
 Buatlah web layouting menggunakan HTML dan CSS (boleh menggunakan CSS framework) untuk aplikasi client kamu meliputi halaman:
 
-- [ ] **Public site**
-  - [ ] Halaman Home/Landing Page
+- [V] **Public site**
+
+  - [V] Halaman Home/Landing Page
     - Halaman yang berfungsi untuk menampilkan data Entitas Utama berbentuk Card, tambahkan input search/filter dan pagination pada halaman ini, buatlah halaman ini dengan layout yang rapi dan semenarik mungkin.
-  - [ ] Halaman Detail
+  - [V] Halaman Detail
     - Buatlah Halaman yang berisi detail dari Entitas Utama.
 
 - [ ] **CMS site**
   - [ ] Halaman Login
-    Pada halaman ini buatlah sebuah form untuk menampung input email dan password user yang digunakan untuk masuk ke CMS
+        Pada halaman ini buatlah sebuah form untuk menampung input email dan password user yang digunakan untuk masuk ke CMS
   - [ ] Halaman list entitas utama . Tampilkan data entity dalam bentuk Tabel .
   - [ ] Navbar / Sidebar yang berfungsi sebagai navigasi halaman.
   - [ ] Halaman create entitas utama
@@ -45,14 +46,14 @@ Target:
 
 Mencoba client server communication menggunakan HTTP Client seperti axios.
 
-- [ ]  Public site: Halaman Home
-Lakukan GET data entitas utama (include: pagination, filter dan sort) pada halaman ini, tampilkan data sesuai dengan database server kalian.
-- [ ]  CMS site: Halaman Login
-Lakukan POST pada pada halaman ini, Jika proses login berhasil, simpan token di localStorage
-- [ ]  CMS site: Halaman Create
-Lakukan POST pada halaman create entitas utama, coba kalian buat data baru dan pastikan bahwa hanya User yang Valid yang bisa membuat data baru
-- [ ]  Halaman lainnya
-Lengkapi semua proses komunikasi Client Server pada aplikasi kalian
+- [ ] Public site: Halaman Home
+      Lakukan GET data entitas utama (include: pagination, filter dan sort) pada halaman ini, tampilkan data sesuai dengan database server kalian.
+- [ ] CMS site: Halaman Login
+      Lakukan POST pada pada halaman ini, Jika proses login berhasil, simpan token di localStorage
+- [ ] CMS site: Halaman Create
+      Lakukan POST pada halaman create entitas utama, coba kalian buat data baru dan pastikan bahwa hanya User yang Valid yang bisa membuat data baru
+- [ ] Halaman lainnya
+      Lengkapi semua proses komunikasi Client Server pada aplikasi kalian
 
 ## **W2D3**
 
@@ -64,6 +65,7 @@ Convert layout atau slicing template yang sudah dibuat ke dalam React.js :
 
 - [ ] Coba buat React pada project hasil generate Vite
 - [ ] Public site
+
   - [ ] Halaman Home/Landing Page
   - [ ] Halaman Detail (Public)
 
@@ -87,6 +89,7 @@ Integrasikan Halaman Web dengan server yang sudah kalian buat pada Challenge/Pro
 Pastikan setiap pergantian tampilan terjadi secara reaktif dengan tidak me-refresh web browser mu. Pasca login berhasil, user akan dinavigasikan ke tampilan home/list.
 
 - [ ] Public site
+
   - [ ] GET data entitas utama pada halaman Home/Landing Page (include: pagination, filter dan sort)
   - [ ] GET data detail entitas utama pada halaman Detail
 
