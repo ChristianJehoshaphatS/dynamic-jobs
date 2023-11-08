@@ -1,8 +1,6 @@
-import Navigation from "../components/Navigation";
-const Home = ({showJobsPage, showHomePage}) => {
+const Home = ({showJobsPage}) => {
 	return (
 		<div id="Home" className="min-h-[100dvh]">
-			<Navigation showHomePage={showHomePage} />
 			<div
 				className="hero min-h-screen"
 				style={{

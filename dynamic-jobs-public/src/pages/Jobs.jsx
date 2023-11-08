@@ -1,13 +1,6 @@
-import Navigation from "../components/Navigation";
 import {useState} from "react";
 
-const Jobs = ({
-	jobs,
-	showHomePage,
-	showJobDetailPage,
-	arrowLogo,
-	companies,
-}) => {
+const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 	const [queries, setQueries] = useState({
 		totalPage: 10,
 		search: "",
@@ -72,8 +65,6 @@ const Jobs = ({
 			id="Page1"
 			className="min-h-[100dvh] bg-sky-950 flex flex-col items-center"
 		>
-			<Navigation showHomePage={showHomePage} />
-
 			{/* <!-- Query part --> */}
 			<br />
 			<br />
@@ -141,14 +132,27 @@ const Jobs = ({
 						onClick={editQuery}
 						className="join-item inline-flex items-center h-12 px-5 text-indigo-100 transition-colors duration-150 bg-zinc-900 rounded-lg focus:shadow-outline hover:bg-indigo-800"
 					>
-						<span>Latest</span>
-
-						<img
-							src={arrowLogo}
-							alt=""
-							className="w-3 h-3 ml-3 fill-current"
-							viewBox="0 0 20 20"
-						/>
+						{queries.sort == "asc" ? (
+							<>
+								<span>Latest</span>
+								<img
+									src={arrowLogo}
+									alt=""
+									className="w-3 h-3 ml-3 fill-current"
+									viewBox="0 0 20 20"
+								/>
+							</>
+						) : (
+							<>
+								<span>Oldest</span>
+								<img
+									src={arrowLogo}
+									alt=""
+									className="w-3 h-3 ml-3 fill-current rotate-180"
+									viewBox="0 0 20 20"
+								/>
+							</>
+						)}
 					</button>
 				</div>
 			</section>
