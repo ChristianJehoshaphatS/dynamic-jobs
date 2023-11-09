@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const Home = ({showJobsPage}) => {
 	return (
 		<div id="Home" className="min-h-[100dvh]">
@@ -17,9 +19,11 @@ const Home = ({showJobsPage}) => {
 							excepturi exercitationem quasi. In deleniti eaque aut repudiandae
 							et a id nisi.
 						</p>
-						<button className="btn btn-primary" onClick={showJobsPage}>
-							Get Started
-						</button>
+						<Link to="/jobs">
+							<button className="btn btn-primary" onClick={showJobsPage}>
+								Get Started
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

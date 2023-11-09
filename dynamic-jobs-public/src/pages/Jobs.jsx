@@ -1,6 +1,10 @@
 import {useState} from "react";
+import arrowLogo from "../assets/chevron-svgrepo-com.svg";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
+import axios from "axios";
 
-const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
+const Jobs = () => {
 	const [queries, setQueries] = useState({
 		totalPage: 10,
 		search: "",
@@ -10,24 +14,77 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 		page: 1,
 	});
 
+	useEffect(() => {
+		const getJobs = async () => {
+			const {data} = await axios.get("http://35.247.140.194/pub/jobs");
+			console.log(data);
+			setJobs(data.result.data);
+		};
+		getJobs();
+
+		const getCompanies = async () => {
+			const {data} = await axios.get("http://35.247.140.194/pub/companies");
+			console.log(data);
+			setCompanies(data);
+		};
+		getCompanies();
+	}, []);
+
+	const handleQuery = async () => {
+		try {
+			console.log(queries);
+			const query = async () => {
+				const joinFIlter = queries.filter.join(",");
+				const {data} = await axios.get(
+					`http://35.247.140.194/pub/jobs?search=${queries.search}&filter=${joinFIlter}&sort=${queries.sort}&limit=${queries.limit}&page=${queries.page}`
+				);
+				console.log(data);
+				setJobs(data.result.data);
+			};
+			query();
+		} catch (error) {
+			console.log(error);
+		} finally {
+			console.log("queried");
+		}
+	};
+
+	const navigate = useNavigate();
+
+	const [jobs, setJobs] = useState([]);
+
+	const [companies, setCompanies] = useState([]);
+
+	function handleDetailClick(id) {
+		navigate(`/jobs/${id}`);
+	}
+
 	// bikin state companies, bikin modal untuk checklist companies, update query based on checked companies
 
 	const editQuery = (event) => {
-		// console.log(event);
+		console.log(event);
 		let checkValue;
 		let changed;
-		const {checked} = event.target;
-		if (checked) {
-			checkValue = event.target.attributes.id.value;
-		} else if (event.target.attributes.name.value) {
-			changed = event.target.attributes.name.value;
+		let checked;
+		if (event) {
+			checked = event?.target?.checked;
 		}
+		if (checked) {
+			checkValue = event?.target?.attributes?.id?.value;
+		}
+		if (event == "pageDn" || event == "pageUp") {
+			changed = event;
+		} else {
+			changed = event?.target?.attributes?.name?.value;
+		}
+
 		switch (changed) {
 			case "search":
 				setQueries({...queries, search: event.target.value});
 				break;
 
 			case "filter":
+				console.log(checkValue);
 				setQueries({...queries, filter: [...queries.filter, checkValue]});
 				break;
 
@@ -96,13 +153,16 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 									{companies.map((company) => {
 										return (
 											// add key company.id
-											<label className="label cursor-pointer mx-4 w-1/5 p-2 hover:bg-black/40 rounded-xl">
+											<label
+												key={company.id}
+												className="label cursor-pointer mx-4 w-1/5 p-2 hover:bg-black/40 rounded-xl"
+											>
 												<span className="label-text mx-4 hover:text-slate-100">
 													{company.name}
 												</span>
 												{/* Change the id to company.id */}
 												<input
-													id={company.name}
+													id={company.id}
 													type="checkbox"
 													className="checkbox"
 													name="filter"
@@ -125,7 +185,12 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 						</div>
 					</dialog>
 					<div className="indicator">
-						<button className="btn join-item text-slate-200">Search</button>
+						<button
+							className="btn join-item text-slate-200"
+							onClick={handleQuery}
+						>
+							Search
+						</button>
 					</div>
 					<button
 						name="sortButton"
@@ -166,7 +231,10 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 			<section className="w-11/12 flex justify-normal flex-wrap text-slate-200">
 				{jobs.map((job) => {
 					return (
-						<div className="card lg:card-side bg-base-100 shadow-xl mx-3.5 mt-6 w-12/12 sm:w-5/12">
+						<div
+							key={job.id}
+							className="card lg:card-side bg-base-100 shadow-xl mx-3.5 mt-6 w-12/12 sm:w-5/12"
+						>
 							<figure className="w-full lg:w-5/12">
 								<img
 									src={job.imgUrl}
@@ -180,8 +248,8 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 								<div className="card-actions justify-end">
 									<button
 										className="btn btn-outline btn-info"
-										onClick={showJobDetailPage}
-										name={job.companyId}
+										onClick={() => handleDetailClick(job.id)}
+										name={job.id}
 									>
 										Detail
 									</button>
@@ -194,7 +262,14 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 			<br />
 			<br />
 			<div className="join">
-				<button onClick={editQuery} name="pageDn" className="join-item btn">
+				<button
+					onClick={() => {
+						editQuery("pageDn");
+						handleQuery();
+					}}
+					name="pageDn"
+					className="join-item btn"
+				>
 					«
 				</button>
 				<select
@@ -215,7 +290,14 @@ const Jobs = ({jobs, showJobDetailPage, arrowLogo, companies}) => {
 						Page: {queries.page}/{queries.totalPage} Show: 25
 					</option>
 				</select>
-				<button onClick={editQuery} name="pageUp" className="join-item btn">
+				<button
+					onClick={() => {
+						editQuery("pageUp");
+						handleQuery();
+					}}
+					name="pageUp"
+					className="join-item btn"
+				>
 					»
 				</button>
 			</div>

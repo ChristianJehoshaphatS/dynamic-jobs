@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const Navigation = ({showHomePage}) => {
 	return (
 		<nav className="navbar bg-indigo-900">
@@ -23,23 +25,20 @@ const Navigation = ({showHomePage}) => {
 					className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-slate-200"
 				>
 					<li>
-						<a onClick={showHomePage}>Homepage</a>
+						<Link to="/">Homepage</Link>
 					</li>
 					<li>
-						<a>CMS</a>
-					</li>
-					<li>
-						<a>About</a>
+						<Link to="/jobs">Jobs</Link>
 					</li>
 				</ul>
 			</div>
 			<div className="flex-1">
-				<a
+				<Link
 					className="btn btn-ghost normal-case text-xl text-slate-200"
-					onClick={showHomePage}
+					to="/"
 				>
 					Dynamic Jobs
-				</a>
+				</Link>
 			</div>
 			<div className="flex-none">
 				<button className="btn btn-square btn-ghost">
