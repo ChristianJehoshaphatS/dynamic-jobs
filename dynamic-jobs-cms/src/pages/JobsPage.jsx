@@ -33,7 +33,7 @@ const Jobs = () => {
 						Authorization: token,
 					},
 				});
-				console.log(data);
+				// console.log(data);
 				setJobs(data.jobs);
 			} catch (error) {
 				console.log(error);
@@ -60,14 +60,14 @@ const Jobs = () => {
 					Authorization: token,
 				},
 			});
-			console.log(data);
+			// console.log(data);
 			setJobs(data.jobs);
 		} catch (error) {
 			console.log(error);
 			setError(error.response.data.message);
 		} finally {
 			setIsLoading(false);
-			console.log(jobs);
+			// console.log(jobs);
 		}
 	};
 

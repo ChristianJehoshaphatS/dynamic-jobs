@@ -43,7 +43,7 @@ const AddCompany = () => {
 					},
 				}
 			);
-			console.log(register);
+			// console.log(register);
 			setRegisteredCompany(register.data.newCompany.name);
 		} catch (error) {
 			console.log(error);

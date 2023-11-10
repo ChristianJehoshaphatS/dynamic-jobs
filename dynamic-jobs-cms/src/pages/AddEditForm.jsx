@@ -66,7 +66,7 @@ const AddEditForm = ({addJob}) => {
 		if (e) {
 			changed = e.target.attributes.name.value;
 		}
-		console.log(changed);
+		// console.log(changed);
 
 		switch (changed) {
 			case "title":
@@ -78,7 +78,7 @@ const AddEditForm = ({addJob}) => {
 				break;
 
 			case "imgFile":
-				console.log("image file changed");
+				// console.log("image file changed");
 				uploadImage(e.target.files[0]);
 				break;
 
@@ -101,12 +101,12 @@ const AddEditForm = ({addJob}) => {
 			default:
 				break;
 		}
-		console.log(jobDetail);
+		// console.log(jobDetail);
 	};
 
 	const uploadImage = async (file) => {
 		try {
-			console.log(file, "?image file");
+			// console.log(file, "?image file");
 			const formData = new FormData();
 
 			formData.append("image", file);
@@ -119,7 +119,7 @@ const AddEditForm = ({addJob}) => {
 					},
 				}
 			);
-			console.log(patchReturn, "Patch Data");
+			// console.log(patchReturn, "Patch Data");
 			setJobDetail({...jobDetail, imgUrl: patchReturn.data.url});
 		} catch (error) {
 			console.log(error);
@@ -129,7 +129,7 @@ const AddEditForm = ({addJob}) => {
 	const handleSubmit = async (e) => {
 		try {
 			e.preventDefault();
-			console.log(e);
+			// console.log(e);
 			if (addJob) {
 				const postJob = await axios.post(
 					"https://chrisjsuryo.tech/jobs",
@@ -140,7 +140,7 @@ const AddEditForm = ({addJob}) => {
 						},
 					}
 				);
-				console.log(postJob);
+				// console.log(postJob);
 			} else {
 				const updateJob = await axios.put(
 					`https://chrisjsuryo.tech/jobs/${jobId}`,
@@ -152,7 +152,7 @@ const AddEditForm = ({addJob}) => {
 					}
 				);
 
-				console.log(updateJob);
+				// console.log(updateJob);
 			}
 			navigate("/jobs");
 		} catch (error) {

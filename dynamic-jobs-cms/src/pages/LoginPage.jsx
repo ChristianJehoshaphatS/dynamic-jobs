@@ -13,13 +13,13 @@ const Login = () => {
 	const handleLogin = async (e) => {
 		try {
 			e.preventDefault();
-			console.log(e);
+			// console.log(e);
 			const token = await axios.post(
 				"https://chrisjsuryo.tech/login",
 				loginDetail
 			);
 			if (token) {
-				console.log(token);
+				// console.log(token);
 				localStorage.setItem(
 					"Authorization",
 					`Bearer ${token.data.access_token}`
@@ -32,10 +32,7 @@ const Login = () => {
 		}
 	};
 
-	const [loginDetail, setLoginDetail] = useState({
-		email: "chris11@mail.com",
-		password: "12345",
-	});
+	const [loginDetail, setLoginDetail] = useState({});
 
 	const [error, setError] = useState("");
 

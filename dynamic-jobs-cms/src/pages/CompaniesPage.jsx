@@ -26,13 +26,13 @@ const Companies = () => {
 						Authorization: token,
 					},
 				});
-				console.log(data);
+				// console.log(data);
 				setCompanies(data.companies);
 			} catch (error) {
 				console.log(error);
 			} finally {
 				setIsLoading(false);
-				console.log(companies);
+				// console.log(companies);
 			}
 		};
 		fetchJobs();
@@ -60,13 +60,13 @@ const Companies = () => {
 					Authorization: token,
 				},
 			});
-			console.log(data);
+			// console.log(data);
 			setCompanies(data.companies);
 		} catch (error) {
 			console.log(error);
 		} finally {
 			setIsLoading(false);
-			console.log(companies);
+			// console.log(companies);
 		}
 	};
 	return (
