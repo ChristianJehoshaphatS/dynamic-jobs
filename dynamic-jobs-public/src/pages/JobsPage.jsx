@@ -16,17 +16,34 @@ const Jobs = () => {
 
 	useEffect(() => {
 		const getJobs = async () => {
-			const {data} = await axios.get("https://chrisjsuryo.tech/pub/jobs");
-			console.log(data);
-			setJobs(data.result.data);
-			setQueries({...queries, totalPage: data.result.totalPage});
+			try {
+				setIsLoading(true);
+				const {data} = await axios.get("https://chrisjsuryo.tech/pub/jobs");
+				console.log(data);
+				setJobs(data.result.data);
+				setQueries({...queries, totalPage: data.result.totalPage});
+			} catch (error) {
+				console.log(error);
+			} finally {
+				setIsLoading(false);
+			}
 		};
 		getJobs();
 
 		const getCompanies = async () => {
-			const {data} = await axios.get("https://chrisjsuryo.tech/pub/companies");
-			console.log(data);
-			setCompanies(data);
+			try {
+				setIsLoading(true);
+
+				const {data} = await axios.get(
+					"https://chrisjsuryo.tech/pub/companies"
+				);
+				console.log(data);
+				setCompanies(data);
+			} catch (error) {
+				console.log(error);
+			} finally {
+				setIsLoading(false);
+			}
 		};
 		getCompanies();
 	}, []);
@@ -58,6 +75,8 @@ const Jobs = () => {
 	const [jobs, setJobs] = useState([]);
 
 	const [companies, setCompanies] = useState([]);
+
+	const [isLoading, setIsLoading] = useState(false);
 
 	function handleDetailClick(id) {
 		navigate(`/jobs/${id}`);
@@ -123,6 +142,10 @@ const Jobs = () => {
 		}
 		console.log(queries);
 	};
+
+	if (isLoading) {
+		return <h1>Page is Currently Loading</h1>;
+	}
 	return (
 		<div
 			id="Page1"

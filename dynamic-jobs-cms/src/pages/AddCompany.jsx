@@ -53,7 +53,7 @@ const AddCompany = () => {
 		<div id="Page6" className="min-h-[100dvh] flex flex-col items-center">
 			<br />
 			<br />
-			<h1 className="text-5xl">Register</h1>
+			<h1 className="text-5xl">Add a New Company</h1>
 			<br />
 			<br />
 			<form

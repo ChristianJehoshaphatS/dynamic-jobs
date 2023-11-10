@@ -78,7 +78,7 @@ const Companies = () => {
 			<br />
 			<Link to="/addCompany">
 				<button className="btn" id="0" name="EditJob">
-					Add Job
+					Add Company
 				</button>
 			</Link>
 			{/* <!-- Table Part --> */}
