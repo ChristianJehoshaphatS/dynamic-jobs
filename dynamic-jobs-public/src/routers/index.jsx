@@ -1,8 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
-import Home from "../pages/Home";
-import Jobs from "../pages/Jobs";
-import Detail from "../pages/Detail";
-import Parent from "../pages/Parent";
+import Home from "../pages/HomePage";
+import Jobs from "../pages/JobsPage";
+import Detail from "../pages/DetailPage";
+import Parent from "../pages/ParentPage";
 
 const router = createBrowserRouter([
 	{
