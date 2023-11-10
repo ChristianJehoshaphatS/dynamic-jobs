@@ -1,4 +1,4 @@
-const JobCard = ({job}) => {
+const JobCard = ({job, handleDetailClick}) => {
 	return (
 		<div
 			key={job.id}

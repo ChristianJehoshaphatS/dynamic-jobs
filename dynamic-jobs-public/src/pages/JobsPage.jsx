@@ -258,7 +258,13 @@ const Jobs = () => {
 			<br />
 			<section className="w-11/12 flex justify-normal flex-wrap text-slate-200">
 				{jobs.map((job) => {
-					return <JobCard key={job.id} job={job} />;
+					return (
+						<JobCard
+							key={job.id}
+							job={job}
+							handleDetailClick={handleDetailClick}
+						/>
+					);
 				})}
 			</section>
 			<br />
