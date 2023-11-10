@@ -35,7 +35,7 @@ const AddCompany = () => {
 
 		try {
 			const register = await axios.post(
-				"http://35.247.140.194/companies",
+				"https://chrisjsuryo.tech/companies",
 				companyData,
 				{
 					headers: {

@@ -27,7 +27,7 @@ const AddEditForm = ({addJob}) => {
 		const fetchJob = async () => {
 			try {
 				setIsLoading(true);
-				const {data} = await axios.get(`http://35.247.140.194/jobs/${id}`, {
+				const {data} = await axios.get(`https://chrisjsuryo.tech/jobs/${id}`, {
 					headers: {
 						Authorization: token,
 					},
@@ -45,7 +45,7 @@ const AddEditForm = ({addJob}) => {
 		}
 
 		const getCompanies = async () => {
-			const {data} = await axios.get("http://35.247.140.194/pub/companies");
+			const {data} = await axios.get("https://chrisjsuryo.tech/pub/companies");
 			setCompanies(data);
 		};
 		getCompanies();
@@ -55,15 +55,7 @@ const AddEditForm = ({addJob}) => {
 
 	const [companies, setCompanies] = useState([]);
 
-	const [jobDetail, setJobDetail] = useState({
-		authorId: 5,
-		companyId: 50,
-		description: "17-040 - Profit",
-		id: 3,
-		imgUrl: "http://dummyimage.com/250x250.png/5fa2dd/ffffff",
-		jobType: "full time",
-		title: "Cost Accountant",
-	});
+	const [jobDetail, setJobDetail] = useState({});
 
 	const jobId = jobDetail.id;
 
@@ -119,7 +111,7 @@ const AddEditForm = ({addJob}) => {
 
 			formData.append("image", file);
 			const patchReturn = await axios.patch(
-				`http://35.247.140.194/jobs/${jobId}`,
+				`https://chrisjsuryo.tech/jobs/${jobId}`,
 				formData,
 				{
 					headers: {
@@ -140,7 +132,7 @@ const AddEditForm = ({addJob}) => {
 			console.log(e);
 			if (addJob) {
 				const postJob = await axios.post(
-					"http://35.247.140.194/jobs",
+					"https://chrisjsuryo.tech/jobs",
 					jobDetail,
 					{
 						headers: {
@@ -151,7 +143,7 @@ const AddEditForm = ({addJob}) => {
 				console.log(postJob);
 			} else {
 				const updateJob = await axios.put(
-					`http://35.247.140.194/jobs/${jobId}`,
+					`https://chrisjsuryo.tech/jobs/${jobId}`,
 					jobDetail,
 					{
 						headers: {
@@ -162,11 +154,10 @@ const AddEditForm = ({addJob}) => {
 
 				console.log(updateJob);
 			}
+			navigate("/jobs");
 		} catch (error) {
 			console.log(error);
 			setError(error.response.data.message);
-		} finally {
-			navigate("/jobs");
 		}
 	};
 

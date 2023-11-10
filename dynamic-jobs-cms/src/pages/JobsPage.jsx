@@ -28,7 +28,7 @@ const Jobs = () => {
 		const fetchJobs = async () => {
 			try {
 				setIsLoading(true);
-				const {data} = await axios.get("http://35.247.140.194/jobs", {
+				const {data} = await axios.get("https://chrisjsuryo.tech/jobs", {
 					headers: {
 						Authorization: token,
 					},
@@ -49,13 +49,13 @@ const Jobs = () => {
 	const handleDelete = async (id) => {
 		try {
 			setIsLoading(true);
-			await axios.delete(`http://35.247.140.194/jobs/${id}`, {
+			await axios.delete(`https://chrisjsuryo.tech/jobs/${id}`, {
 				headers: {
 					Authorization: token,
 				},
 			});
 
-			const {data} = await axios.get("http://35.247.140.194/jobs", {
+			const {data} = await axios.get("https://chrisjsuryo.tech/jobs", {
 				headers: {
 					Authorization: token,
 				},

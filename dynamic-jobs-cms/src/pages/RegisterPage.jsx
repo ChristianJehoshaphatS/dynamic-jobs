@@ -35,7 +35,7 @@ const Register = () => {
 
 		try {
 			const register = await axios.post(
-				"http://35.247.140.194/user",
+				"https://chrisjsuryo.tech/user",
 				registerData,
 				{
 					headers: {

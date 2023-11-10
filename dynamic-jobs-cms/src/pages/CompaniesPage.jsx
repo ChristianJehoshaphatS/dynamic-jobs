@@ -21,7 +21,7 @@ const Companies = () => {
 		const fetchJobs = async () => {
 			try {
 				setIsLoading(true);
-				const {data} = await axios.get("http://35.247.140.194/companies", {
+				const {data} = await axios.get("https://chrisjsuryo.tech/companies", {
 					headers: {
 						Authorization: token,
 					},
@@ -49,13 +49,13 @@ const Companies = () => {
 	const handleDelete = async (id) => {
 		try {
 			setIsLoading(true);
-			await axios.delete(`http://35.247.140.194/companies/${id}`, {
+			await axios.delete(`https://chrisjsuryo.tech/companies/${id}`, {
 				headers: {
 					Authorization: token,
 				},
 			});
 
-			const {data} = await axios.get("http://35.247.140.194/companies", {
+			const {data} = await axios.get("https://chrisjsuryo.tech/companies", {
 				headers: {
 					Authorization: token,
 				},

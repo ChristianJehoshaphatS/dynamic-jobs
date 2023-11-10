@@ -1,4 +1,4 @@
-import Navigation from "../components/Navigation";
+import Navigation from "../components/NavBar";
 import {Outlet} from "react-router-dom";
 
 const Parent = () => {

@@ -1,10 +1,10 @@
 import {createBrowserRouter} from "react-router-dom";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import Jobs from "../pages/Jobs";
-import Companies from "../pages/Companies";
+import Login from "../pages/LoginPage";
+import Register from "../pages/RegisterPage";
+import Jobs from "../pages/JobsPage";
+import Companies from "../pages/CompaniesPage";
 import AddEditForm from "../pages/AddEditForm";
-import Parent from "../pages/Parent";
+import Parent from "../pages/ParentPage";
 import AddCompany from "../pages/AddCompany";
 
 const router = createBrowserRouter([

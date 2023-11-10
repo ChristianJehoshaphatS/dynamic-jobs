@@ -15,7 +15,7 @@ const Login = () => {
 			e.preventDefault();
 			console.log(e);
 			const token = await axios.post(
-				"http://35.247.140.194/login",
+				"https://chrisjsuryo.tech/login",
 				loginDetail
 			);
 			if (token) {
