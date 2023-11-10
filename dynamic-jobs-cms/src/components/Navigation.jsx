@@ -1,4 +1,5 @@
-const Navigation = ({changeView}) => {
+import {Link} from "react-router-dom";
+const Navigation = () => {
 	return (
 		<nav className="navbar bg-indigo-900">
 			<div className="dropdown">
@@ -23,40 +24,29 @@ const Navigation = ({changeView}) => {
 					className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-slate-200"
 				>
 					<li>
-						<a onClick={changeView} name="Register">
-							Register
-						</a>
+						<Link to="/register">Register</Link>
 					</li>
 					<li>
-						<a onClick={changeView} name="Login">
-							Login
-						</a>
+						<Link to="/login">Login</Link>
 					</li>
 					<li>
-						<a onClick={changeView} name="Jobs">
-							Jobs List
-						</a>
+						<Link to="/jobs">Jobs List</Link>
 					</li>
 					<li>
-						<a onClick={changeView} name="Companies">
-							Companies List
-						</a>
+						<Link to="/companies">Companies List</Link>
 					</li>
 					<li>
-						<a onClick={changeView} name="Login" id="Logout">
-							Log Out
-						</a>
+						<Link to="/login">Log Out</Link>
 					</li>
 				</ul>
 			</div>
 			<div className="flex-1">
-				<a
+				<Link
+					to="/login"
 					className="btn btn-ghost normal-case text-xl text-slate-200"
-					name="Login"
-					onClick={changeView}
 				>
 					Dynamic Jobs - Admin Panel
-				</a>
+				</Link>
 			</div>
 			<div className="flex-none">
 				<button className="btn btn-square btn-ghost">

@@ -19,6 +19,7 @@ const Jobs = () => {
 			const {data} = await axios.get("http://35.247.140.194/pub/jobs");
 			console.log(data);
 			setJobs(data.result.data);
+			setQueries({...queries, totalPage: data.result.totalPage});
 		};
 		getJobs();
 
@@ -31,6 +32,7 @@ const Jobs = () => {
 	}, []);
 
 	const handleQuery = async () => {
+		let dataReturn;
 		try {
 			console.log(queries);
 			const query = async () => {
@@ -39,12 +41,14 @@ const Jobs = () => {
 					`http://35.247.140.194/pub/jobs?search=${queries.search}&filter=${joinFIlter}&sort=${queries.sort}&limit=${queries.limit}&page=${queries.page}`
 				);
 				console.log(data);
+				dataReturn = data;
 				setJobs(data.result.data);
 			};
 			query();
 		} catch (error) {
 			console.log(error);
 		} finally {
+			setQueries({...queries, totalPage: dataReturn?.result?.totalPage});
 			console.log("queried");
 		}
 	};
@@ -152,7 +156,6 @@ const Jobs = () => {
 								<form className="container flex flex-wrap" action="">
 									{companies.map((company) => {
 										return (
-											// add key company.id
 											<label
 												key={company.id}
 												className="label cursor-pointer mx-4 w-1/5 p-2 hover:bg-black/40 rounded-xl"
@@ -160,7 +163,6 @@ const Jobs = () => {
 												<span className="label-text mx-4 hover:text-slate-100">
 													{company.name}
 												</span>
-												{/* Change the id to company.id */}
 												<input
 													id={company.id}
 													type="checkbox"
