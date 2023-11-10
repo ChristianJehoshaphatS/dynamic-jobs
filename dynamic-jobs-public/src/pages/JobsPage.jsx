@@ -16,7 +16,7 @@ const Jobs = () => {
 
 	useEffect(() => {
 		const getJobs = async () => {
-			const {data} = await axios.get("http://35.247.140.194/pub/jobs");
+			const {data} = await axios.get("https://chrisjsuryo.tech/pub/jobs");
 			console.log(data);
 			setJobs(data.result.data);
 			setQueries({...queries, totalPage: data.result.totalPage});
@@ -24,7 +24,7 @@ const Jobs = () => {
 		getJobs();
 
 		const getCompanies = async () => {
-			const {data} = await axios.get("http://35.247.140.194/pub/companies");
+			const {data} = await axios.get("https://chrisjsuryo.tech/pub/companies");
 			console.log(data);
 			setCompanies(data);
 		};
@@ -34,11 +34,11 @@ const Jobs = () => {
 	const handleQuery = async () => {
 		let dataReturn;
 		try {
-			console.log(queries);
+			console.log(queries, ">>>>>	");
 			const query = async () => {
 				const joinFIlter = queries.filter.join(",");
 				const {data} = await axios.get(
-					`http://35.247.140.194/pub/jobs?search=${queries.search}&filter=${joinFIlter}&sort=${queries.sort}&limit=${queries.limit}&page=${queries.page}`
+					`https://chrisjsuryo.tech/pub/jobs?search=${queries.search}&filter=${joinFIlter}&sort=${queries.sort}&limit=${queries.limit}&page=${queries.page}`
 				);
 				console.log(data);
 				dataReturn = data;
@@ -48,7 +48,7 @@ const Jobs = () => {
 		} catch (error) {
 			console.log(error);
 		} finally {
-			setQueries({...queries, totalPage: dataReturn?.result?.totalPage});
+			// setQueries({...queries, totalPage: dataReturn?.result?.totalPage});
 			console.log("queried");
 		}
 	};
@@ -103,17 +103,19 @@ const Jobs = () => {
 				break;
 
 			case "pageDn":
-				if (queries.page <= 1) {
-					queries.page = 2;
+				if (queries.page < 1) {
+					setQueries({...queries, page: 1});
+				} else {
+					setQueries({...queries, page: queries.page - 1});
 				}
-				setQueries({...queries, page: queries.page - 1});
 				break;
 
 			case "pageUp":
-				if (queries.page >= queries.totalPage) {
-					queries.page = queries.totalPage - 1;
+				if (queries.page > queries.totalPage) {
+					setQueries({...queries, page: queries.totalPage});
+				} else {
+					setQueries({...queries, page: queries.page + 1});
 				}
-				setQueries({...queries, page: queries.page + 1});
 				break;
 
 			default:
@@ -241,7 +243,7 @@ const Jobs = () => {
 								<img
 									src={job.imgUrl}
 									alt="Album"
-									className="object-contain w-full object-cover h-40 lg:h-full"
+									className=" w-full object-cover h-40 lg:h-full"
 								/>
 							</figure>
 							<div className="card-body w-12/12 lg:w-7/12">
@@ -267,13 +269,13 @@ const Jobs = () => {
 				<button
 					onClick={() => {
 						editQuery("pageDn");
-						handleQuery();
 					}}
 					name="pageDn"
 					className="join-item btn"
 				>
 					«
 				</button>
+
 				<select
 					className="select select-bordered join-item"
 					onChange={editQuery}
@@ -295,7 +297,6 @@ const Jobs = () => {
 				<button
 					onClick={() => {
 						editQuery("pageUp");
-						handleQuery();
 					}}
 					name="pageUp"
 					className="join-item btn"

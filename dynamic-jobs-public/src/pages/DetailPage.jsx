@@ -9,7 +9,7 @@ const Detail = () => {
 
 	useEffect(() => {
 		const getJobs = async () => {
-			const {data} = await axios.get(`http://35.247.140.194/pub/jobs/${id}`);
+			const {data} = await axios.get(`https://chrisjsuryo.tech/pub/jobs/${id}`);
 			console.log(data.job);
 			setDetail(data.job);
 		};
