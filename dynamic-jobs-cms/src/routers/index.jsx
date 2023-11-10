@@ -5,6 +5,7 @@ import Jobs from "../pages/Jobs";
 import Companies from "../pages/Companies";
 import AddEditForm from "../pages/AddEditForm";
 import Parent from "../pages/Parent";
+import AddCompany from "../pages/AddCompany";
 
 const router = createBrowserRouter([
 	{
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 			{
 				path: "/companies",
 				element: <Companies />,
+			},
+			{
+				path: "/addCompany",
+				element: <AddCompany />,
 			},
 			{
 				path: "/addJob",

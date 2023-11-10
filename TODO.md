@@ -46,14 +46,14 @@ Target:
 
 Mencoba client server communication menggunakan HTTP Client seperti axios.
 
-- [ ] Public site: Halaman Home
-      Lakukan GET data entitas utama (include: pagination, filter dan sort) pada halaman ini, tampilkan data sesuai dengan database server kalian.
-- [ ] CMS site: Halaman Login
-      Lakukan POST pada pada halaman ini, Jika proses login berhasil, simpan token di localStorage
-- [ ] CMS site: Halaman Create
-      Lakukan POST pada halaman create entitas utama, coba kalian buat data baru dan pastikan bahwa hanya User yang Valid yang bisa membuat data baru
-- [ ] Halaman lainnya
-      Lengkapi semua proses komunikasi Client Server pada aplikasi kalian
+- [V] Public site: Halaman Home
+  Lakukan GET data entitas utama (include: pagination, filter dan sort) pada halaman ini, tampilkan data sesuai dengan database server kalian.
+- [V] CMS site: Halaman Login
+  Lakukan POST pada pada halaman ini, Jika proses login berhasil, simpan token di localStorage
+- [V] CMS site: Halaman Create
+  Lakukan POST pada halaman create entitas utama, coba kalian buat data baru dan pastikan bahwa hanya User yang Valid yang bisa membuat data baru
+- [V] Halaman lainnya
+  Lengkapi semua proses komunikasi Client Server pada aplikasi kalian
 
 ## **W2D3**
 
@@ -63,20 +63,20 @@ Target:
 
 Convert layout atau slicing template yang sudah dibuat ke dalam React.js :
 
-- [ ] Coba buat React pada project hasil generate Vite
-- [ ] Public site
+- [V] Coba buat React pada project hasil generate Vite
+- [V] Public site
 
-  - [ ] Halaman Home/Landing Page
-  - [ ] Halaman Detail (Public)
+  - [V] Halaman Home/Landing Page
+  - [V] Halaman Detail (Public)
 
-- [ ] CMS site
-  - [ ] Halaman Login
-  - [ ] Halaman list entitas utama
-  - [ ] Halaman create entitas utama
-  - [ ] Halaman edit entitas utama
-  - [ ] Halaman upload image entitas utama
-  - [ ] Halaman list untuk entitas kedua
-  - [ ] Halaman register staff
+- [V] CMS site
+  - [V] Halaman Login
+  - [V] Halaman list entitas utama
+  - [V] Halaman create entitas utama
+  - [V] Halaman edit entitas utama
+  - [V] Halaman upload image entitas utama
+  - [V] Halaman list untuk entitas kedua
+  - [V] Halaman register staff
 
 ## **W2D4**
 
@@ -88,36 +88,36 @@ Integrasikan Halaman Web dengan server yang sudah kalian buat pada Challenge/Pro
 
 Pastikan setiap pergantian tampilan terjadi secara reaktif dengan tidak me-refresh web browser mu. Pasca login berhasil, user akan dinavigasikan ke tampilan home/list.
 
-- [ ] Public site
+- [V] Public site
 
-  - [ ] GET data entitas utama pada halaman Home/Landing Page (include: pagination, filter dan sort)
-  - [ ] GET data detail entitas utama pada halaman Detail
+  - [V] GET data entitas utama pada halaman Home/Landing Page (include: pagination, filter dan sort)
+  - [V] GET data detail entitas utama pada halaman Detail
 
-- [ ] CMS site
-  - [ ] POST pada halaman Login
-  - [ ] GET data entitas utama pada halaman list entitas utama (include: pagination, filter dan sort)
-  - [ ] POST pada halaman create entitas utama
-  - [ ] PUT pada halaman edit entitas utama
-  - [ ] DELETE untuk menghapus entitas utama
-  - [ ] PATCH untuk mengupload image / mengupdate imgUrl entitas utama
-  - [ ] GET data entitas kedua pada Halaman list entitas kedua
-  - [ ] POST pada Halaman register staff
+- [V] CMS site
+  - [V] POST pada halaman Login
+  - [V] GET data entitas utama pada halaman list entitas utama (include: pagination, filter dan sort)
+  - [V] POST pada halaman create entitas utama
+  - [V] PUT pada halaman edit entitas utama
+  - [V] DELETE untuk menghapus entitas utama
+  - [V] PATCH untuk mengupload image / mengupdate imgUrl entitas utama
+  - [V] GET data entitas kedua pada Halaman list entitas kedua
+  - [V] POST pada Halaman register staff
 
 ### React Router
 
 Silahkan Implementasikan routing pada aplikasi client kalian.
 
-- [ ] Public site
-  - [ ] Halaman Home/Landing Page
-  - [ ] Halaman Detail
-- [ ] CMS site
-  - [ ] Halaman Login
-  - [ ] Halaman list entitas utama
-  - [ ] Halaman create entitas utama (boleh menggunakan modal)
-  - [ ] Halaman edit entitas utama (boleh menggunakan modal)
-  - [ ] Halaman upload image untuk entitas utama (boleh menggunakan modal)
-  - [ ] Halaman list untuk entitas kedua
-  - [ ] Halaman register staff
+- [V] Public site
+  - [V] Halaman Home/Landing Page
+  - [V] Halaman Detail
+- [V] CMS site
+  - [V] Halaman Login
+  - [V] Halaman list entitas utama
+  - [V] Halaman create entitas utama (boleh menggunakan modal)
+  - [V] Halaman edit entitas utama (boleh menggunakan modal)
+  - [V] Halaman upload image untuk entitas utama (boleh menggunakan modal)
+  - [V] Halaman list untuk entitas kedua
+  - [V] Halaman register staff
 
 ## **W2D5**
 
@@ -125,4 +125,4 @@ Target:
 
 Coba lakukan deployment untuk client (bisa coba deploy hal sederhana terlebih dahulu seperti halaman yang menampilkan ‘hello world’) menggunakan Firebase/Vercel.
 
-- [ ] Deploy client
+- [V] Deploy client

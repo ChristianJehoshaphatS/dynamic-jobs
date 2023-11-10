@@ -1,5 +1,8 @@
 import {Link} from "react-router-dom";
 const Navigation = () => {
+	const clearStorage = () => {
+		localStorage.clear();
+	};
 	return (
 		<nav className="navbar bg-indigo-900">
 			<div className="dropdown">
@@ -36,7 +39,9 @@ const Navigation = () => {
 						<Link to="/companies">Companies List</Link>
 					</li>
 					<li>
-						<Link to="/login">Log Out</Link>
+						<Link to="/login" onClick={clearStorage}>
+							Log Out
+						</Link>
 					</li>
 				</ul>
 			</div>

@@ -1,5 +1,5 @@
-import Navigation from "../components/Navigation";
-import Footer from "../components/Footer";
+import Navigation from "../components/NavBar";
+import Footer from "../components/FooterMenu";
 import {Outlet} from "react-router-dom";
 
 const Parent = () => {

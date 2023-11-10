@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
-const Register = () => {
+const AddCompany = () => {
 	let token;
 	const navigate = useNavigate();
 
@@ -13,37 +13,38 @@ const Register = () => {
 		}
 	});
 
-	const [registerData, setRegisterData] = useState({
+	const [companyData, setCompanyData] = useState({
+		name: "",
+		companyLogo: "",
+		location: "",
 		email: "",
-		password: "",
-		username: "",
-		address: "",
-		phoneNumber: "",
+		description: "",
 	});
 
-	const [registeredUser, setRegisteredUser] = useState("");
+	const [registeredCompany, setRegisteredCompany] = useState("");
 
 	const handleFormChange = (e) => {
 		e.preventDefault();
 
-		setRegisterData({...registerData, [e.target.name]: e.target.value});
+		setCompanyData({...companyData, [e.target.name]: e.target.value});
 	};
 
 	const handleSubmitRegister = async (e) => {
 		e.preventDefault();
-		setRegisteredUser("");
+		setRegisteredCompany("");
 
 		try {
 			const register = await axios.post(
-				"http://35.247.140.194/user",
-				registerData,
+				"http://35.247.140.194/companies",
+				companyData,
 				{
 					headers: {
 						Authorization: token,
 					},
 				}
 			);
-			setRegisteredUser(register.data.output.username);
+			console.log(register);
+			setRegisteredCompany(register.data.newCompany.name);
 		} catch (error) {
 			console.log(error);
 		}
@@ -66,14 +67,14 @@ const Register = () => {
 						className="block text-black text-sm font-bold mb-2"
 						for="username"
 					>
-						Username
+						Company Name
 					</label>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 bg-grey-800 text-white leading-tight focus:outline outline-cyan-500 focus:shadow-outline"
-						name="username"
+						name="name"
 						type="text"
-						placeholder="Tim Cooks"
-						value={registerData.username}
+						placeholder="SpaceX"
+						value={companyData.name}
 						onChange={handleFormChange}
 					/>
 				</div>
@@ -82,14 +83,14 @@ const Register = () => {
 						className="block text-black text-sm font-bold mb-2"
 						for="email"
 					>
-						Email
+						Company Logo
 					</label>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 bg-grey-800 text-white leading-tight focus:outline outline-cyan-500 focus:shadow-outline"
-						name="email"
+						name="companyLogo"
 						type="text"
-						placeholder="example@mail.com"
-						value={registerData.email}
+						placeholder="imageurl.com/image.png"
+						value={companyData.companyLogo}
 						onChange={handleFormChange}
 					/>
 				</div>
@@ -98,14 +99,14 @@ const Register = () => {
 						className="block text-black text-sm font-bold mb-2"
 						for="password"
 					>
-						Password
+						Location
 					</label>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 bg-grey-800 text-white mb-3 leading-tight focus:outline outline-cyan-500 focus:shadow-outline"
-						name="password"
-						type="password"
-						placeholder="******************"
-						value={registerData.password}
+						name="location"
+						type="text"
+						placeholder="Highway Road 132"
+						value={companyData.location}
 						onChange={handleFormChange}
 					/>
 					{/* <!-- <p className="text-red-500 text-xs italic">Please choose a password.</p> --> */}
@@ -115,14 +116,14 @@ const Register = () => {
 						className="block text-black text-sm font-bold mb-2"
 						for="phoneNumber"
 					>
-						Phone Number
+						Email
 					</label>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 bg-grey-800 text-white leading-tight focus:outline outline-cyan-500 focus:shadow-outline"
-						name="phoneNumber"
-						type="text"
-						placeholder="+1 222 4562 7890"
-						value={registerData.phoneNumber}
+						name="email"
+						type="email"
+						placeholder="example@mail.com"
+						value={companyData.email}
 						onChange={handleFormChange}
 					/>
 				</div>
@@ -131,14 +132,14 @@ const Register = () => {
 						className="block text-black text-sm font-bold mb-2"
 						for="address"
 					>
-						Address
+						Description
 					</label>
 					<input
 						className="shadow appearance-none border rounded w-full py-2 px-3 bg-grey-800 text-white leading-tight focus:outline outline-cyan-500 focus:shadow-outline"
-						name="address"
+						name="description"
 						type="text"
 						placeholder="West Banks County number 98"
-						value={registerData.address}
+						value={companyData.description}
 						onChange={handleFormChange}
 					/>
 				</div>
@@ -151,9 +152,9 @@ const Register = () => {
 					</button>
 				</div>
 				<br />
-				{registeredUser && (
+				{registeredCompany && (
 					<h1 className="text-red-500">
-						Username {registeredUser} has been created!
+						Company {registeredCompany} has been created!
 					</h1>
 				)}
 			</form>
@@ -164,4 +165,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default AddCompany;

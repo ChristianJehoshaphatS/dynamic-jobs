@@ -1,11 +1,12 @@
 import {useEffect} from "react";
 import {useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 const AddEditForm = ({addJob}) => {
 	let {id} = useParams();
-
+	let token;
+	const navigate = useNavigate();
 	const bearerToken =
 		"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInVzZXJuYW1lIjoiQ2hyaXMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTg4MzQ0NzR9.gtmd6AELRfq6DdIUOp5aC5qtFtt5ZWvSo4fZSfhquAg";
 
@@ -14,12 +15,21 @@ const AddEditForm = ({addJob}) => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
+		token = localStorage.getItem("Authorization");
+		if (!token) {
+			navigate("/login");
+		}
+	});
+
+	useEffect(() => {
+		const user = localStorage.getItem("userId");
+		setJobDetail({...jobDetail, authorId: user});
 		const fetchJob = async () => {
 			try {
 				setIsLoading(true);
 				const {data} = await axios.get(`http://35.247.140.194/jobs/${id}`, {
 					headers: {
-						Authorization: bearerTokenAdmin,
+						Authorization: token,
 					},
 				});
 				setJobDetail(data.foundJob);
@@ -40,6 +50,8 @@ const AddEditForm = ({addJob}) => {
 		};
 		getCompanies();
 	}, []);
+
+	const [error, setError] = useState("");
 
 	const [companies, setCompanies] = useState([]);
 
@@ -111,7 +123,7 @@ const AddEditForm = ({addJob}) => {
 				formData,
 				{
 					headers: {
-						Authorization: bearerTokenAdmin,
+						Authorization: token,
 					},
 				}
 			);
@@ -132,7 +144,7 @@ const AddEditForm = ({addJob}) => {
 					jobDetail,
 					{
 						headers: {
-							Authorization: bearerTokenAdmin,
+							Authorization: token,
 						},
 					}
 				);
@@ -143,7 +155,7 @@ const AddEditForm = ({addJob}) => {
 					jobDetail,
 					{
 						headers: {
-							Authorization: bearerTokenAdmin,
+							Authorization: token,
 						},
 					}
 				);
@@ -152,6 +164,9 @@ const AddEditForm = ({addJob}) => {
 			}
 		} catch (error) {
 			console.log(error);
+			setError(error.response.data.message);
+		} finally {
+			navigate("/jobs");
 		}
 	};
 
@@ -170,6 +185,8 @@ const AddEditForm = ({addJob}) => {
 			<h1 className="text-5xl text-white">
 				{addJob == true ? "Add a New Job" : `Edit Job With ID ${id}`}
 			</h1>
+			{error && <h1 className="text-red-500">{error}</h1>}
+
 			<br />
 			<br />
 			<form
@@ -313,38 +330,6 @@ const AddEditForm = ({addJob}) => {
 								{companies.map((company) => {
 									return <option value={company.id}>{company.name}</option>;
 								})}
-							</select>
-							<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 ">
-								<svg
-									className="fill-current h-4 w-4"
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 20 20"
-								>
-									<path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-								</svg>
-							</div>
-						</div>
-					</div>
-					<div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-						<label
-							className="block uppercase tracking-wide  text-xs font-bold mb-2 text-white"
-							for="grid-state"
-						>
-							Author ID
-						</label>
-						<div className="relative">
-							{/* populate from companies */}
-							<select
-								className="text-black block appearance-none w-full bg-gray-200 border border-gray-200  py-3 px-4 pr-8 rounded leading-tight focus:outline outline-cyan-500 focus:bg-white focus:border-gray-500"
-								id="grid-state"
-								name="authorId"
-								onChange={handleFormChange}
-								value={addJob ? null : jobDetail.authorId}
-							>
-								<option>Choose...</option>
-								<option value={1}>New Mexico</option>
-								<option value={2}>Missouri</option>
-								<option value={3}>Texas</option>
 							</select>
 							<div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 ">
 								<svg

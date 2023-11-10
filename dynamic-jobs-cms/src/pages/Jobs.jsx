@@ -10,10 +10,19 @@ const Jobs = () => {
 
 	const bearerTokenAdmin =
 		"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiY2hyaXMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTk1NDE1NDN9.UjUOogYQ92l36dvC_jXLXfWYjSX5VJAD1F7lASbIQDo";
-
+	let token;
 	const navigate = useNavigate();
 
 	const [isLoading, setIsLoading] = useState(false);
+
+	const [error, setError] = useState();
+
+	useEffect(() => {
+		token = localStorage.getItem("Authorization");
+		if (!token) {
+			navigate("/login");
+		}
+	});
 
 	useEffect(() => {
 		const fetchJobs = async () => {
@@ -21,7 +30,7 @@ const Jobs = () => {
 				setIsLoading(true);
 				const {data} = await axios.get("http://35.247.140.194/jobs", {
 					headers: {
-						Authorization: bearerToken,
+						Authorization: token,
 					},
 				});
 				console.log(data);
@@ -34,6 +43,7 @@ const Jobs = () => {
 		};
 		fetchJobs();
 	}, []);
+
 	const [jobs, setJobs] = useState([]);
 
 	const handleDelete = async (id) => {
@@ -41,19 +51,20 @@ const Jobs = () => {
 			setIsLoading(true);
 			await axios.delete(`http://35.247.140.194/jobs/${id}`, {
 				headers: {
-					Authorization: bearerTokenAdmin,
+					Authorization: token,
 				},
 			});
 
 			const {data} = await axios.get("http://35.247.140.194/jobs", {
 				headers: {
-					Authorization: bearerTokenAdmin,
+					Authorization: token,
 				},
 			});
 			console.log(data);
 			setJobs(data.jobs);
 		} catch (error) {
 			console.log(error);
+			setError(error.response.data.message);
 		} finally {
 			setIsLoading(false);
 			console.log(jobs);
@@ -76,6 +87,7 @@ const Jobs = () => {
 			<br />
 			<br />
 			<h1 className="text-5xl text-white">Jobs List</h1>
+			{error && <h1 className="text-red-500">{error}</h1>}
 			<br />
 			<br />
 			<Link to="/addJob">

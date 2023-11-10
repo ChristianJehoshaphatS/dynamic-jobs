@@ -1,7 +1,11 @@
 import {useEffect} from "react";
 import {useState} from "react";
 import axios from "axios";
+import {Link, useNavigate} from "react-router-dom";
+
 const Companies = () => {
+	let token;
+	const navigate = useNavigate();
 	const bearerToken =
 		"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjcsInVzZXJuYW1lIjoiQ2hyaXMiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTg4MzQ0NzR9.gtmd6AELRfq6DdIUOp5aC5qtFtt5ZWvSo4fZSfhquAg";
 
@@ -10,12 +14,16 @@ const Companies = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
+		token = localStorage.getItem("Authorization");
+		if (!token) {
+			navigate("/login");
+		}
 		const fetchJobs = async () => {
 			try {
 				setIsLoading(true);
 				const {data} = await axios.get("http://35.247.140.194/companies", {
 					headers: {
-						Authorization: bearerTokenAdmin,
+						Authorization: token,
 					},
 				});
 				console.log(data);
@@ -43,13 +51,13 @@ const Companies = () => {
 			setIsLoading(true);
 			await axios.delete(`http://35.247.140.194/companies/${id}`, {
 				headers: {
-					Authorization: bearerTokenAdmin,
+					Authorization: token,
 				},
 			});
 
 			const {data} = await axios.get("http://35.247.140.194/companies", {
 				headers: {
-					Authorization: bearerTokenAdmin,
+					Authorization: token,
 				},
 			});
 			console.log(data);
@@ -68,6 +76,11 @@ const Companies = () => {
 			<h1 className="text-5xl text-white">Companies List</h1>
 			<br />
 			<br />
+			<Link to="/addCompany">
+				<button className="btn" id="0" name="EditJob">
+					Add Job
+				</button>
+			</Link>
 			{/* <!-- Table Part --> */}
 			<div className="overflow-x-auto mx-11 text-center">
 				<div className="overflow-x-auto">
