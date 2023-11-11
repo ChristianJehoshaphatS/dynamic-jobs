@@ -52,6 +52,7 @@ const Jobs = () => {
 	const handleQuery = async () => {
 		let dataReturn;
 		try {
+			setIsLoading(true);
 			console.log(queries, ">>>>>	");
 			const query = async () => {
 				const joinFIlter = queries.filter.join(",");
@@ -66,6 +67,7 @@ const Jobs = () => {
 		} catch (error) {
 			console.log(error);
 		} finally {
+			setIsLoading(false);
 			// setQueries({...queries, totalPage: dataReturn?.result?.totalPage});
 			console.log("queried");
 		}
