@@ -94,10 +94,9 @@ const Jobs = () => {
 		let checked;
 		if (event) {
 			checked = event?.target?.checked;
-		}
-		if (checked) {
 			checkValue = event?.target?.attributes?.id?.value;
 		}
+
 		if (event == "pageDn" || event == "pageUp") {
 			changed = event;
 		} else {
@@ -111,7 +110,12 @@ const Jobs = () => {
 
 			case "filter":
 				console.log(checkValue);
-				setQueries({...queries, filter: [...queries.filter, checkValue]});
+				if (!checked) {
+					let newFilter = queries.filter.filter((el) => el != checkValue);
+					setQueries({...queries, filter: newFilter});
+				} else {
+					setQueries({...queries, filter: [...queries.filter, checkValue]});
+				}
 				break;
 
 			case "sortButton":
