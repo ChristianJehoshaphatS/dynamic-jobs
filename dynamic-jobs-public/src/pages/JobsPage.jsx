@@ -50,7 +50,6 @@ const Jobs = () => {
 	}, []);
 
 	const handleQuery = async () => {
-		let dataReturn;
 		try {
 			setIsLoading(true);
 			console.log(queries, ">>>>>	");
@@ -60,16 +59,22 @@ const Jobs = () => {
 					`https://chrisjsuryo.tech/pub/jobs?search=${queries.search}&filter=${joinFIlter}&sort=${queries.sort}&limit=${queries.limit}&page=${queries.page}`
 				);
 				console.log(data);
-				dataReturn = data;
 				setJobs(data.result.data);
+
+				setQueries({
+					...queries,
+					totalPage: data?.result?.totalPage,
+					page: data?.result?.currentPage,
+				});
 			};
 			query();
+			console.log(dataReturn);
+
+			console.log("queried", queries);
 		} catch (error) {
 			console.log(error);
 		} finally {
 			setIsLoading(false);
-			// setQueries({...queries, totalPage: dataReturn?.result?.totalPage});
-			console.log("queried");
 		}
 	};
 
